@@ -7,12 +7,17 @@ module SpreeCreatePayment::Spree::Api::V2::Platform::OrdersControllerDecorator
             puts order
             payment_method_id = params[:order][:payment_method_id]
             amount = params[:order][:amount]
+            following_code = params[:order][:following_code]
             payment_method = payment_method(payment_method_id)
             puts "HALA INJAAAAAAAAAAAAA"
             order.payments.create!({
                 source: Spree::Check.last,
-                amount: amount, payment_method: payment_method
+                amount: amount, payment_method: payment_method, following_code: following_code
                 })
+            while !order.complete?
+            order.next!
+            end
+             
             payment = order.payments.last
             puts "AFTER THIS*************" 
             render :json => payment, status: 201        

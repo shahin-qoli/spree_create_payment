@@ -4,7 +4,7 @@ Deface::Override.new(
   replace_contents: 'div[data-hook="admin_payment_form_fields"]',
   text: <<-HTML
 
-      <div class="form-group">
+  <div class="form-group">
     <%= f.label :amount, Spree.t(:amount) %>
     <%= f.text_field :amount, value: @order.display_outstanding_balance.money, class: 'form-control' %>
     <%= f.label :following_code, Spree.t(:following_code) %>
@@ -26,7 +26,7 @@ Deface::Override.new(
 
         <div class="payment-methods my-3" id="payment_method_<%= method.id %>">
           <% if method.source_required? %>
-            <%= render partial: "spree/admin/payments/source_forms/#{method.method_type}",
+            <%= render partial: "spree/admin/payments/source_forms/%s" % [method.method_type],
                        locals: {
                          payment_method: method,
                          previous_cards: method.reusable_sources(@order)
@@ -39,3 +39,4 @@ Deface::Override.new(
 
    HTML
 )
+
