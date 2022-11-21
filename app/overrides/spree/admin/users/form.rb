@@ -7,6 +7,11 @@ Deface::Override.new(
       <%= f.label :mobile_number, Spree.t(:mobile_number) %>
       <%= f.text_field :mobile_number, class: 'form-control' %>
       <%= f.error_message_on :mobile_number %>
-    <% end %>
+      <% end %>
+      <%= f.field_container :b1_code do %>
+      <%= f.label :b1_code, Spree.t(:b1_code) %>
+      <%= f.text_field :b1_code, class: 'form-control' %>
+      <%= f.error_message_on :b1_code %>
+      <% end %>
     HTML
 )
