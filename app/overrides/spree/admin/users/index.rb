@@ -4,16 +4,21 @@ Deface::Override.new(
     replace_contents: 'div[data-hook="admin_users_index_search"]',
     text: <<-HTML
     <%= search_form_for [:admin, @search], url: spree.admin_users_url do |f| %>
-      <div class="form-group">
-        <%= f.label :b1_code_cont, Spree.t(:b1_code) %>
-        <%= f.text_field :b1_code_cont, class: "form-control js-quick-search-target js-filterable" %>
-      </div>
+
       <div class="form-group">
         <%= f.label :email_cont, Spree.t(:email) %>
-        <%= f.email_field :email_cont, class: "form-control js-quick-search-target js-filterable" %>
+        <%= f.email_field :email_cont, class: 'form-control js-quick-search-target js-filterable' %>
       </div>
       <div class="row">
         <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <%= f.label :mobile_number, Spree.t(:mobile_number) %>
+        <%= f.text_field :mobile_number_cont, class: 'form-control js-filterable' %>
+      </div>      
+      <div class="form-group">
+        <%= f.label :b1_code_cont, Spree.t(:b1_code) %>
+        <%= f.text_field :b1_code_cont, class: 'form-control js-filterable' %>
+      </div>
           <div class="form-group">
             <%= f.label :bill_address_firstname_cont, Spree.t(:first_name) %>
             <%= f.text_field :bill_address_firstname_cont, class: 'form-control js-filterable' %>
