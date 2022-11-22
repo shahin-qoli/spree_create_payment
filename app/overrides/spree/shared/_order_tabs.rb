@@ -1,15 +1,15 @@
 Deface::Override.new(
   virtual_path: 'spree/admin/shared/_order_tabs',
   name: 'Add FollowUp to order',
-  insert_bottom: 'erb[silent]:contains('content_for :page_tabs do')',
+  insert_after: 'li[data-hook="admin_order_tabs_state_changes"]',
   text: <<-HTML
-     <% if can?(:index, Spree::Followup) %>
+
     <li class="nav-item" data-hook='admin_order_tabs_followups'>
       <%= link_to_with_icon 'credit-card.svg',
         Spree.t(:followups),
-        spree.admin_order_followups_url(@order),
-        class: "#{'active' if current == :followups} nav-link" %>
+        admin_followup_index_path(@order),
+        class: "%s nav-link" % "'active' if current == :followups" %>
     </li>
-  <% end %>
+
    HTML
 )

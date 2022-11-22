@@ -6,6 +6,7 @@ module Spree
       before_action :load_order
 
       def index
+        @followups = @order.followups.order(created_at: :desc)
       end
 
       def new

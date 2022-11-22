@@ -1,0 +1,32 @@
+<%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :state_changes } %>
+<% if @followups.any? %>
+<div class="table-responsive border rounded bg-white">
+  <table class="table" id="listing_order_followups" data-hook>
+    <thead class="text-muted">
+      <tr data-hook="admin_orders_followups_headers">
+        <th><%= Spree::Followup.human_attribute_name(:resault) %></th>
+        <th><%= Spree::Followup.human_attribute_name(:payment_mean) %></th>
+        <th><%= Spree::Followup.human_attribute_name(:is_final) %></th>
+        <th><%= Spree::Followup.human_attribute_name(:timestamp) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @followups.each do |followup| %>
+        <tr>
+          <td><%= Spree.t(followup.resault) %></td>
+          <td><%= Spree.t(followup.payment_mean) %></td>
+          <td><%= Spree.t(followup.is_final) %></td>
+          <td>
+            <%= pretty_time(state_change.created_at) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <div class="text-center no-objects-found m-5">
+    <%= Spree.t(:no_followups) %>
+  </div>
+<% end %>
